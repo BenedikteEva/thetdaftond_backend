@@ -51,7 +51,7 @@ describe("Testing the todo Facade", function () {
     
   expect(todos.length).to.be.equal(3);
     await todoFacade.deleteTodo(todos[2]._id);
-   
+    todos = await todoFacade.getAllToDos();
     expect(todos.length).to.be.equal(2);
   });
 
