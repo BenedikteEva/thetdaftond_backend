@@ -24,20 +24,16 @@ router.get('/', function (req, res, next) {
 
   router.put('/todosetchecked/:_id', async function(req,res, next){
     let todo= await todoFacade.setChecked({_id:req.params._id}, req.body.checked);
-   todo.save((err,user, done) => {
-      if(err) {
-          res.send(err);
-      }
-      else { //If no errors, send it back to the client
+  
         res.render('todosetchecked', {
           title: 'todo set checked',
           message :'changed checked status'
         
-     
-        }) 
-      } done();
+        })
+       
+       done();
     
-    })
+   
     })
 
   router.post('/todocreate', async function(req,res,next){
@@ -58,13 +54,13 @@ router.get('/', function (req, res, next) {
      
   });
 
-  router.delete('/tododelete',async function(req,res,next){
+  router.delete('/tododelete/:_id',async function(req,res,next){
   
     await todoFacade.deleteTodo(req.params._id);
   
   
-    res.render('todobyid', {
-      title:'todobyid',
+    res.render('tododelete', {
+      title:'tododelete',
       todo: 'todo has succesfully been deleted',
     
   
