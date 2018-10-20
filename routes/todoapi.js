@@ -30,6 +30,7 @@ router.get('/', function (req, res, next) {
       }
       else { //If no errors, send it back to the client
         res.render('todosetchecked', {
+          title: 'todo set checked',
           message :'changed checked status'
         
      
