@@ -21,9 +21,9 @@ router.get('/', function (req, res, next) {
   
   });
 
-  router.put('/todoSetChecked/:_id', async function(req,res,next){
+  router.put('/todoSetChecked', async function(req,res,next){
   
-    let todo = await todoFacade.setChecked(req.params._id);
+    let todo = await todoFacade.setChecked(req.params._id, req.params.checked);
     let todojson=res.json(todo);
   
     res.render('todoSetChecked', {
@@ -53,7 +53,7 @@ router.get('/', function (req, res, next) {
      
   });
 
-  router.delete('/tododelete/:_id',async function(req,res,next){
+  router.delete('/tododelete',async function(req,res,next){
   
     await todoFacade.deleteTodo(req.params._id);
   

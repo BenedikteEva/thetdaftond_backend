@@ -19,8 +19,8 @@ getAllToDos = async () => {
   return await Todo.find({})
 }
 
-setChecked = async (_id) => {
-  return await Todo.findByIdAndUpdate(_id, { $set: { checked: true } }, function (err, res) {
+setChecked = async (_id, checked) => {
+  return await Todo.findByIdAndUpdate(_id, { $set: { checked: checked } }, function (err, res) {
     if (err) return handleError(err);
 
   });
