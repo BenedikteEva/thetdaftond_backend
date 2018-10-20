@@ -42,11 +42,11 @@ router.get('/', function (req, res, next) {
       }
       else { //If no errors, send it back to the client
         res.render('todoSetChecked', {
-          message :'changed checked status',
+          message :'changed checked status'
         
-      
+     
         }) 
-      }
+      } done();
     
     })
     })
