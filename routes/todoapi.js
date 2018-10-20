@@ -34,8 +34,8 @@ router.get('/', function (req, res, next) {
     })
      
   });
-  router.put('/todoSetChecked/:_id', async function(req,res, next){
-    let todo= await userFacade.addJobToUser(req.params._id, req.body);
+  router.put('/todosetchecked/:_id', async function(req,res, next){
+    let todo= await userFacade.addJobToUser(req.params._id, req.params.title);
    todo.save((err,user, done) => {
       if(err) {
           res.send(err);
