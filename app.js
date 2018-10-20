@@ -10,13 +10,14 @@ var connect=require('./dbSetup.js')
 var indexRouter = require('./routes/index');
 var apiRouter = require('./routes/api');
 var todoapiRouter=require('./routes/todoapi')
-
+var cors = require('cors');
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.set('env', 'development');
+app.use(cors()); 
 app.use(logger('dev'));
 //app.use(loggerDoc);
 app.use(express.json());
