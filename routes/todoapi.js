@@ -34,6 +34,22 @@ router.get('/', function (req, res, next) {
     })
      
   });
+  router.put('/todoSetChecked/:_id', async function(req,res, next){
+    let todo= await userFacade.addJobToUser(req.params._id, req.body);
+   todo.save((err,user, done) => {
+      if(err) {
+          res.send(err);
+      }
+      else { //If no errors, send it back to the client
+        res.render('todoSetChecked', {
+          message :'changed checked status',
+        
+      
+        }) 
+      }
+    
+    })
+    })
 
   router.post('/todocreate', async function(req,res,next){
  
