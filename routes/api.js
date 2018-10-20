@@ -62,14 +62,14 @@ router.post('/usercreate', async function(req,res,next){
 });
 
 
-router.delete('/userbyid/:_id',async function(req,res,next){
+router.delete('/userdelete/:id',async function(req,res,next){
   
   await userFacade.deleteUser(req.params._id);
 
 
-  res.render('userbyid', {
+  res.render('userdelete', {
     title:'userbyid',
-    user: 'user has succesfully been deleted',
+    message: 'user has succesfully been deleted',
   
 
 
@@ -77,6 +77,21 @@ router.delete('/userbyid/:_id',async function(req,res,next){
    
 })
 
- 
+router.put('/userjob/:_id', async function(req,res, next){
+  let userwithnewjob= await userFacade.addJobToUser(req.params._id, req.params.type, req.params.company, req.params.companyUrl);
+  userwithnewjob.save((err,user, done) => {
+    if(err) {
+        res.send(err);
+    }
+    else { //If no errors, send it back to the client
+      res.render('userjob', {
+        message :'succesfully added a job to user',
+      
+    
+      }) 
+    }
+  
+  })
+  })
 
 module.exports = router;
