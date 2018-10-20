@@ -12,6 +12,7 @@ var todoFacade = require("../facades/todoFacade");
 var todos = require('../models/Todo.js');
 var Todo = mongoose.model('Todo', todos.todoSchema);
 let connection = null;
+
 describe("Testing the todo Facade", function () {
 
   /* Connect to the TEST-DATABASE */
@@ -25,10 +26,12 @@ describe("Testing the todo Facade", function () {
     mongoose.connection.close();
   })
 
-  var todos = [];
+  
   /* Setup the database in a known state (2 todos) before EACH test */
   beforeEach(async function () {
+    
     await Todo.deleteMany({}).exec();
+    
     todos = await Promise.all([
       new Todo({title: "test add todo",projectid:0,id:1 }).save(),
       new Todo({title: "test todo today",projectid:0,id:2 }).save(),
@@ -58,10 +61,11 @@ describe("Testing the todo Facade", function () {
   it("Schould  set todo 1's checked to true", async function () {
     var todos= await todoFacade.getAllToDos();
 
-    var newJob = await todoFacade.setChecked(todos[0]._id, true);
+var todo = todos[1]._id;
+   await todoFacade.setChecked(todo, true);
     todos= await todoFacade.getAllToDos();
-    expect(todos[0].checked).to.be.true;
-  })
+    expect(todos[1].checked).to.be.true;
+  });
 
 
 

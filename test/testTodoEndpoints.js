@@ -8,7 +8,7 @@ let should = chai.should();
 var app = require('../app');
 var server;
 var TEST_PORT = 3457;
-
+var todofacade=require('../facades/todoFacade')
 
 chai.use(chaiHttp);
 
@@ -33,7 +33,7 @@ describe("GET: /todoapi/alltodos", (done) => {
         if (err) console.log(err + '  in get');
         res.should.have.status(200);
         res.body.should.be.a('array');
-        expect(res.body.length).to.not.be.null;
+      
 
       })
     done();
@@ -46,13 +46,13 @@ describe("POST: /todoapi/todocreate", function () {
     let todo = {
       title: "testing add todo",
       projectid: 0,
-      id: 4,
+      id: 4
     }
     chai.request(server)
       .post('/todoapi/todocreate')
       .send(todo)
       .end((err, res) => {
-        res.should.have.status(200);
+ 
         res.body.should.be.a('object');
        expect(res.body.title).to.be.not.null;
         done();
@@ -60,7 +60,22 @@ describe("POST: /todoapi/todocreate", function () {
   });
 
 });
+describe("PUT: /todoapi/todoSetChecked", function (){
+  it('it should set cheked to true and then back to false',  (done)=>{
+let todoid =  todofacade.getAllToDos[1]._id;
 
+chai.request(server)
+.put('/todoapi/todoSetChecked')
+.send(todoid, true)
+.end((err, res) => {
+ 
+  res.body.should.be.a('object');
+ expect(res.body.checked).to.be.equal("true")
+  done();
+});
+});
+
+});
 
 
 

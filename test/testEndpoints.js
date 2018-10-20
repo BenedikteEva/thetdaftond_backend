@@ -7,8 +7,8 @@ var chaiHttp = require('chai-http');
 let should = chai.should();
 var app = require('../app');
 var server;
-var TEST_PORT = 3456;
-
+var TEST_PORT = 3459;
+var userFacade=require('../facades/userFacade')
 
 chai.use(chaiHttp);
 
@@ -22,8 +22,7 @@ before(function(done){
 after(function(done){
   server.close();
   done();
-})
-
+}) 
 
 describe("GET: /api/allusers", (done)=>{
     it("should get all users", (done)=>{
@@ -40,22 +39,66 @@ describe("GET: /api/allusers", (done)=>{
 })
 
 
-/* describe("POST: /api/usercreate", function () {
-  var options = {
-    url: "http://localhost:" + TEST_PORT + "/api/usercreate",
-    method: "POST",
-    json: true,
-    body: {firstName: "Ugly", lastName: "Bugley", userName:"ugbug",password:"ugtest", email: "ug@bug.ly" }
-  }
 
-  it("should get the newly added user", function (done) {
-    request(options, function (error, res, body) {
-      let ugbug = body.firstName;
-      console.log(ugbug)
-      expect(ugbug).to.be.equal("Ugly");
-      //You should also check whether the joke actually was added to the Data-store
-      done();
+
+
+
+describe("DELETE: /api/userbyid", function (){
+it('should delete a user and then expect it to not be there', (done)=>{
+  let userid=   userFacade.findByUsername('kw')._id;
+
+ chai.request(server)
+      .delete('/api/userbyid')
+      .send(userid)
+      .end((err, res) => {
+        res.should.have.status(200);
+   
+       expect(res.body.userName).to.be.null;
+        
+      });
+  
+      done(); });
+
+});
+
+
+describe("POST: /api/usercreate", function () {
+  it('it should not POST a user without userName field', (done) => {
+    let user = {
+      firstName: "Testy",
+      lastName: "Testisen",
+      userName: 'tete',
+      password:"test", 
+      email: "test@test.tt",
+      type: null,
+      company:null,
+      companyUrl:null
+
+    }
+    chai.request(server)
+      .post('/api/usercreate')
+      .send(user)
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.be.a('object');
+      
+         console.log(userFacade.getAllUsers)
+      });
+     
+      done(); });
+
+});
+describe("PUT: /api/userjob", function (){
+  it('should give a user a new job and then test if user really got a new job',  (done)=>{
+    let userid= userFacade.findByUsername('hw')._id;
+
+    chai.request(server)
+    .put('/api/userjob')
+    .send(userid, 'piccolo', 'notmycompany', 'www.notmycompany.org')
+    .end((err, res) => {
+      res.should.have.status(200);
+     expect(res.body.job[1].type).to.be.equal('piccolo');
+      
     });
-  })
-}); */
-
+    done(); });
+})
