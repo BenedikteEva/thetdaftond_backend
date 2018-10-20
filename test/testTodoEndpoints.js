@@ -66,7 +66,7 @@ let todoid =  todofacade.getAllToDos[1]._id;
 
 chai.request(server)
 .put('/todoapi/todoSetChecked')
-.send(todoid, true)
+.send({_id:"5bcb82d44bffc416287a3250",checked:'false'})
 .end((err, res) => {
  
   res.body.should.be.a('object');

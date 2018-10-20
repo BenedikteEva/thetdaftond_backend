@@ -21,7 +21,7 @@ router.get('/', function (req, res, next) {
   
   });
 
-  router.put('/todoSetChecked', async function(req,res,next){
+  router.put('/todoSetChecked/:_id', async function(req,res,next){
   
     let todo = await todoFacade.setChecked(req.params._id, req.params.checked);
     let todojson=res.json(todo);
@@ -29,7 +29,7 @@ router.get('/', function (req, res, next) {
     res.render('todoSetChecked', {
       title :'todo',
      
-      todo: todojson
+      message:"todo succesfully updated"
   
     })
      
