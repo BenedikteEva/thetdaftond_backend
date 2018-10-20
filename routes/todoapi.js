@@ -23,7 +23,7 @@ router.get('/', function (req, res, next) {
 
 
   router.put('/todosetchecked/:_id', async function(req,res, next){
-    let todo= await todoFacade.setChecked({_id:req.params._id}, req.params.checked);
+    let todo= await todoFacade.setChecked({_id:req.params._id}, req.body.checked);
    todo.save((err,user, done) => {
       if(err) {
           res.send(err);
