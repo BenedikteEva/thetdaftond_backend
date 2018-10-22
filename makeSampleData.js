@@ -7,17 +7,10 @@ var Todo = require("./models/Todo.js");
 
 
 
-
-
-
-
-
-
 // utility function til at skabe positioner Jeg var nødt at ændre user til at kunne tage en string istedet for med mindre 
 //jeg gerne vil have hele useren embedded og det vil jeg vist nok helst ikke fordi: det fylder mere og det er ikke nødvendigt (håber jeg) 
 function todoCreator(title, projectid, id) {
-  await Todo.deleteMany({});
-  await Project.deleteMany({});
+
   var todo = new Todo({title:title,projectid: projectid,id: id});
   return todo;
 }
@@ -29,9 +22,10 @@ function projectCreator(title, description, id) {
 
 
 async function createTodosandProjects() {
+  await Todo.deleteMany({});
+  await Project.deleteMany({});
   try {
-  const userPromises=[createUsers()]
-  var users = await Promise.all(userPromises);
+
 
 
   const todotutorial =[todoCreator('add todo', 0, 0), todoCreator('check todo', 0,1), todoCreator('drag and drop checked todo into the black hole', 0, 2)]
