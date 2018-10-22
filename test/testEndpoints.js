@@ -41,7 +41,7 @@ describe("GET: /api/allusers", (done)=>{
 
 
 
-
+/* 
 
 describe("DELETE: /api/userbyid", function (){
 it('should delete a user and then expect it to not be there', (done)=>{
@@ -101,4 +101,4 @@ describe("PUT: /api/userjob", function (){
       
     });
     done(); });
-})
+}) */
