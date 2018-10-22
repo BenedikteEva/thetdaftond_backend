@@ -12,8 +12,7 @@ router.get('/', function (req, res, next) {
   router.get('/alltodos',async function (req, res, next) {
     let alltodos = await todoFacade.getAllToDos();
     let alltodosjson=res.json(alltodos);
-    
-   next();
+
     res.render('alltodos', {
       title: 'all todos',
       alltodos: alltodosjson
@@ -24,7 +23,7 @@ router.get('/', function (req, res, next) {
 
   router.put('/todosetchecked/:_id', async function(req,res, next){
     let todo= await todoFacade.setChecked(req.params._id, req.body.checked);
-   
+   console.log('trouble set cheked'+ req.params._id)
     res.render('todosetchecked', {
       title: 'todo set checked',
       message: 'changed checked'
