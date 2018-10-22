@@ -19,8 +19,8 @@ getAllToDos = async () => {
   return await Todo.find({})
 }
 
-setChecked = async (_id, checked) => {
-  return await Todo.findByIdAndUpdate(_id, { $set: { checked: checked } }).exec();
+setChecked = async (id, checked) => {
+  return await Todo.findByIdAndUpdate(id, { $set: { checked: checked } }).exec();
 }
 
 deleteTodo = async (_id) => {
