@@ -37,7 +37,7 @@ router.get('/', function (req, res, next) {
 
   router.post('/projectcreate/:project', async function(req,res,next){
  
-    let newproject =  await projectFacade.addproject(req.body.title, req.body.id, req.body.productid);
+    let newproject =  await projectFacade.addproject(req.body.title, req.body.description, req.body.id);
   
    
     newproject.save((err,project) => {
