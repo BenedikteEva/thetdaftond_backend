@@ -8,7 +8,6 @@ var  User=require('./models/User.js')
 var connect=require('./dbSetup.js')
  connect();
 var indexRouter = require('./routes/index');
-var apiRouter = require('./routes/api');
 var todoapiRouter=require('./routes/todoapi')
 var cors = require('cors');
 var app = express();
@@ -25,7 +24,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
-app.use('/api', apiRouter);
 app.use('/todoapi',todoapiRouter);
 
 
