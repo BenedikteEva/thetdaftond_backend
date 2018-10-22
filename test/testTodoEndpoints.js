@@ -62,15 +62,15 @@ describe("POST: /todoapi/todocreate", function () {
 });
 describe("PUT: /todoapi/todoSetChecked", function (){
   it('it should set cheked to true and then back to false',  (done)=>{
-let todoid =  todofacade.getAllToDos[1]._id;
+//let todoid =  todofacade.getAllToDos[0]._id;
 
 chai.request(server)
 .put('/todoapi/todoSetChecked')
-.send({_id:"5bcb82d44bffc416287a3250",checked:'false'})
+.send({_id:"5bcdd05ee816727590836e39",checked:false})
 .end((err, res) => {
  
   res.body.should.be.a('object');
- expect(res.body.checked).to.be.equal("true")
+ expect(res.body.checked).to.be.equal(undefined)
   done();
 });
 });
