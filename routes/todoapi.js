@@ -22,8 +22,8 @@ router.get('/', function (req, res, next) {
   });
 
 
-  router.put('/todosetchecked/:_id', async function(req,res, next){
-    let todo= await todoFacade.setChecked({_id:req.params._id}, req.body.checked);
+  router.put('/todosetchecked/:id', async function(req,res, next){
+    let todo= await todoFacade.setChecked({_id:req.params.id}, req.body.checked);
    
     res.render('todosetchecked', {
       title: 'todo set checked',
