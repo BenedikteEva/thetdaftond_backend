@@ -40,18 +40,15 @@ router.get('/', function (req, res, next) {
     let newproject =  await projectFacade.addproject(req.body);
   
    
-    newproject.save((err,project) => {
-      if(err) {
-          res.send(err);
-      }
-      else { //If no errors, send it back to the client
-          res.json({message: "project successfully added!", project });
-      }
+    res.render('projectcreate', {
+      title :'projectcreate',
+      message: 'successfully created project'
+     
+   
   
     })
      
   });
-
   router.delete('/projectdelete/:_id',async function(req,res,next){
   
     await projectFacade.deleteproject(req.params._id);
