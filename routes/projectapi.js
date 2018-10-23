@@ -35,7 +35,7 @@ router.get('/', function (req, res, next) {
      
   });
 
-  router.post('/projectcreate/:project', async function(req,res,next){
+  router.post('/projectcreate', async function(req,res,next){
  
     let newproject =  await projectFacade.addProject(req.body);
   
