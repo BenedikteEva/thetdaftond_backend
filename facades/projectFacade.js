@@ -7,9 +7,10 @@ var Project = mongoose.model('Project', projects.projectschema);
 
 
 
-  addProject = async (Project) => {
-   return  await Project.create(Project);
-  }
+async function addProject(project) {
+
+  return await Project.create(project);
+}
 
   getAllprojects =async () =>{
 
