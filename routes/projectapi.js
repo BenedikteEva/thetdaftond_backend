@@ -21,12 +21,12 @@ router.get('/', function (req, res, next) {
   
   });
 
-  router.put('/projectSetChecked/:_id', async function(req,res,next){
+  router.put('/projectsetchecked/:_id', async function(req,res,next){
   
     let project = await projectFacade.setChecked(req.params._id);
     let projectjson=res.json(project);
   
-    res.render('projectSetChecked', {
+    res.render('projectsetchecked', {
       title :'project',
      
       project: projectjson
