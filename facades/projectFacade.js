@@ -21,7 +21,7 @@ async function addProject(project) {
       return await Project.findByIdAndUpdate(_id,{$set:{checked:checked}}, function (err, tank) {
         if (err) return handleError(err);
         res.send(tank);
-      });
+      }).exec();
     }
 
     updateProjectDescription=async(_id, description)=>{
