@@ -23,7 +23,7 @@ router.get('/', function (req, res, next) {
 
   router.put('/projectsetchecked/:_id', async function(req,res,next){
   
-    let project = await projectFacade.setChecked(req.params._id);
+    let project = await projectFacade.setChecked(req.params._id, req.body.checked);
     let projectjson=res.json(project);
   
     res.render('projectsetchecked', {
