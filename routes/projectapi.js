@@ -54,7 +54,7 @@ router.get('/', function (req, res, next) {
 
   router.delete('/delete/:_id',async function(req,res,next){
   
-    await projectFacade.deleteproject(req.params._id);
+    await projectFacade.deleteProject(req.params._id);
   
   
     res.render('delete', {
