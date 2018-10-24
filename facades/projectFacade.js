@@ -32,8 +32,8 @@ async function addProject(project) {
         
     }
 
-    deleteProject=async (id)=>{
-      return await Project.findByIdAndDelete(id);
+    deleteProject=async (_id)=>{
+      return await Project.findByIdAndDelete(_id).exec();
     }
    
 
