@@ -57,8 +57,8 @@ router.get('/', function (req, res, next) {
   
   
     res.render('delete', {
-      title:'tododelete',
-      todo: 'todo has succesfully been deleted',
+      message:'tododelete',
+    
     
   
   
