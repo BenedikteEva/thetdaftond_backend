@@ -58,11 +58,9 @@ router.get('/', function (req, res, next) {
   
   
     res.render('delete', {
-      title:'delete',
+   
       message: 'project has succesfully been deleted',
     
-  
-  
     })
      
   })
