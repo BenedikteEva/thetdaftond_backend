@@ -10,6 +10,7 @@ var connect=require('./dbSetup.js')
 var indexRouter = require('./routes/index');
 var todoapiRouter=require('./routes/todoapi')
 var projectapiRouter=require('./routes/projectapi')
+var feedbackapiRouter=require('./routes/feedbackapi')
 var cors = require('cors');
 var app = express();
 
@@ -27,7 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/todoapi',todoapiRouter);
 app.use('/projectapi',projectapiRouter);
-
+app.use('/feedbackapi',feedbackapiRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
