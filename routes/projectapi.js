@@ -52,14 +52,14 @@ router.get('/', function (req, res, next) {
      
   });
 
-  router.delete('/projectdelete/:_id',async function(req,res,next){
+  router.delete('/delete/:_id',async function(req,res,next){
   
     await projectFacade.deleteproject(req.params._id);
   
   
-    res.render('projectbyid', {
-      title:'projectbyid',
-      project: 'project has succesfully been deleted',
+    res.render('delete', {
+      title:'delete',
+      message: 'project has succesfully been deleted',
     
   
   
