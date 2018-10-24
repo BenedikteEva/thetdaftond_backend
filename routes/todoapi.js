@@ -51,12 +51,12 @@ router.get('/', function (req, res, next) {
      
   });
 
-  router.delete('/tododelete/:_id',async function(req,res,next){
+  router.delete('/delete/:_id',async function(req,res,next){
   
     await todoFacade.deleteTodo(req.params._id);
   
   
-    res.render('tododelete', {
+    res.render('delete', {
       title:'tododelete',
       todo: 'todo has succesfully been deleted',
     

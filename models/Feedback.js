@@ -2,8 +2,9 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var feedbackSchema = new Schema({
-    title: String,
+    purpose: String,
     message: String,
+    created: { type: Date, default: Date.now },
     id: Number,
     level: Number,
 
